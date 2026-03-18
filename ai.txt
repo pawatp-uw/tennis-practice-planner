@@ -1,0 +1,7 @@
+I used ChatGPT mainly as a debugging tool while working on this project. Most of my use was focused on 
+resolving coding issues, understanding error messages in VS Code, and fixing problems when parts of my 
+Flask app were not working as expected. For example, I asked for help when I ran into issues with routing,
+form handling, and integrating the weather API, as well as when my session generation logic was not 
+producing the correct results. These were specific, targeted questions to help me move past errors.
+The overall idea, structure, and implementation of the project were done by me. I used ChatGPT only 
+when I was stuck or needed help understanding why something was not working.
