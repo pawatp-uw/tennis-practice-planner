@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+    color: #1f2937;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+select,
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+}
+
+button {
+    margin-top: 14px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.error-card {
+    border-left: 6px solid #dc2626;
+}
+
+.session-list li {
+    margin-bottom: 18px;
+}
+
+.drill-name {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.drill-category,
+.drill-equipment {
+    color: #4b5563;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.drill-description {
+    margin-bottom: 4px;
+}
+
+.card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    font-weight: bold;
+}
+
+.recommendation {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #1d4ed8;
+}

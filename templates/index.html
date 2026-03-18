@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Aware Tennis Practice Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Weather Aware Tennis Practice Planner</h1>
+            <p>
+                This app helps you generate a tennis practice plan based on your
+                available time, skill level, focus area, and local weather.
+            </p>
+
+            <form method="POST">
+                <label for="city">City</label>
+                <select name="city" id="city" required>
+                    <option value="Seattle">Seattle</option>
+                    <option value="Bangkok">Bangkok</option>
+                    <option value="Los Angeles">Los Angeles</option>
+                    <option value="New York">New York</option>
+                </select>
+
+                <label for="skill_level">Skill Level</label>
+                <select name="skill_level" id="skill_level" required>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+
+                <label for="focus_area">Focus Area</label>
+                <select name="focus_area" id="focus_area" required>
+                    <option value="serves">Serves</option>
+                    <option value="groundstrokes">Groundstrokes</option>
+                    <option value="netplay">Net Play</option>
+                    <option value="matchplay">Match Play</option>
+                </select>
+
+                <label for="total_minutes">Total Practice Time (minutes)</label>
+                <input
+                    type="number"
+                    id="total_minutes"
+                    name="total_minutes"
+                    min="20"
+                    max="180"
+                    placeholder="Example: 60"
+                    required
+                >
+
+                <button type="submit">Generate Practice Plan</button>
+            </form>
+        </div>
+
+        {% if error %}
+        <div class="card error-card">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+
+        {% if result %}
+        <div class="card">
+            <h2>Your Practice Plan</h2>
+            <p><strong>City:</strong> {{ result.city }}</p>
+            <p><strong>Skill Level:</strong> {{ result.skill_level }}</p>
+            <p><strong>Focus Area:</strong> {{ result.focus_area }}</p>
+            <p><strong>Requested Time:</strong> {{ result.requested_minutes }} minutes</p>
+            <p><strong>Generated Time:</strong> {{ result.actual_minutes }} minutes</p>
+        </div>
+
+        <div class="card">
+            <h2>Weather Summary</h2>
+            <p><strong>Max Temperature:</strong> {{ result.weather.temperature_max }} °C</p>
+            <p>
+                <strong>Max Rain Chance:</strong>
+                {{ result.weather.precipitation_probability_max }}%
+            </p>
+            <p>
+                <strong>Max Wind Speed:</strong>
+                {{ result.weather.wind_speed_max }} km/h
+            </p>
+
+            <p class="recommendation">
+                Recommendation: {{ result.recommendation }}
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Session Breakdown</h2>
+            <ol class="session-list">
+                {% for drill in result.session %}
+                <li>
+                    <div class="drill-name">
+                        {{ drill.name }} - {{ drill.minutes }} min
+                    </div>
+                    <div class="drill-category">
+                        Category: {{ drill.category.title() }}
+                    </div>
+                    <div class="drill-description">
+                        {{ drill.description }}
+                    </div>
+                    <div class="drill-equipment">
+                        Equipment: {{ drill.equipment }}
+                    </div>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+
+        <div class="card">
+            <h2>Equipment Reminder</h2>
+            <ul>
+                {% for item in result.equipment %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
